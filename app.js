@@ -15,7 +15,7 @@ function displayMagnitude(size, elem) {
   // elem.style.width = size + "px";
 }
 
-myimg = document.getElementById("circle");
+myimg = document.getElementById("mag_circle_1");
 console.log(myimg);
 
 // size = 400;
@@ -42,7 +42,7 @@ var options = {
 };
 
 // connect the client
-client.connect(options);
+//client.connect(options);
 
 // called when the client connects
 function onConnect() {
@@ -75,6 +75,6 @@ function onMessageArrived(message) {
   var newsize = (mag / 25000) * modifier;
   var max_value = 600;
   newsize = newsize > max_value ? max_value : newsize;
-  myimg = document.getElementById("circle");
+  myimg = document.getElementById("mag_circle_1");
   displayMagnitude(newsize, myimg)
 }
