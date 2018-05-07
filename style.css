@@ -38,6 +38,22 @@ canvas{
     margin-bottom: 4px;
     background-color: #BAC0C4;
 }
+.mag_container{
+  position:relative;
+  width:200px;
+  height:200px;
+}
+
+#circle {
+    position: absolute;
+    top:0;right:0;bottom:0;left:0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition:transform .5s linear;
+    transform: scale(.2);
+    will-change: transform;
+}
 
 html {
     position: relative;

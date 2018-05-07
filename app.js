@@ -2,6 +2,25 @@
 var clientId  = 'a:9fc2hw:'+Math.random().toString(16).substr(2, 8);
 client = new Paho.MQTT.Client("9fc2hw.messaging.internetofthings.ibmcloud.com", 1883, clientId);
 
+function displayMagnitude(size, elem) {
+  mag_offset_x = 200;
+  mag_offset_y = 200;
+  pos_l = mag_offset_x - size/2;
+  pos_t = mag_offset_y - size/2;
+  // elem.style.left = pos_l;
+  // elem.style.top = pos_t;
+  size /= 500;
+  elem.style.transform = "scale("+size+")";
+  // elem.style.height = size + "px";
+  // elem.style.width = size + "px";
+}
+
+myimg = document.getElementById("circle");
+console.log(myimg);
+
+// size = 400;
+// displayMagnitude(size, myimg);
+
 // set callback handlers
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
@@ -45,5 +64,17 @@ function onConnectionLost(responseObject) {
 // called when a message arrives
 function onMessageArrived(message) {
   console.log("onMessageArrived:"+message.payloadString);
-  document.getElementById("sensorvalue").innerHTML = message.payloadString
+  document.getElementById("sensorvalue").innerHTML = message.payloadString;
+  var parsed = JSON.parse(message.payloadString)
+  console.log("obj is " + parsed);
+  var mag = Math.abs(parseInt(parsed.x)) +
+            Math.abs(parseInt(parsed.y)) +
+            Math.abs(parseInt(parsed.z));
+  console.log("magnitude is " + mag);
+  const modifier = 100;
+  var newsize = (mag / 25000) * modifier;
+  var max_value = 600;
+  newsize = newsize > max_value ? max_value : newsize;
+  myimg = document.getElementById("circle");
+  displayMagnitude(newsize, myimg)
 }
