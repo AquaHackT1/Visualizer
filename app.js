@@ -33,16 +33,18 @@ var options = {
     // Gets Called if the connection has sucessfully been established
     onSuccess: function () {
         client.subscribe("iot-2/type/Accelerometer/id/+/evt/+/fmt/+");
-        alert("Connected");
+        //alert("Connected");
+        console.log("Successfully connected to server!");
     },
     // Gets Called if the connection could not be established
     onFailure: function (message) {
-        alert("Connection failed: " + message.errorMessage);
+        // alert("Connection failed: " + message.errorMessage);
+        console.log("Connection failed!" + message.errorMessage);
     }
 };
 
 // connect the client
-//client.connect(options);
+client.connect(options);
 
 // called when the client connects
 function onConnect() {
