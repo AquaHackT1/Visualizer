@@ -67,7 +67,7 @@ function onMessageArrived(message) {
   newsize = newsize > max_value ? max_value : newsize;
   // Get the images and render
   var myimg = document.getElementById("mag_circle_1");
-  if (myimg != null){ displayMagnitude(newsize, myimg)
+  if (myimg != null){ displayMagnitude(newsize*2, myimg)
   var emil = document.getElementById("emil");
   if (emil != null){
     newsize = newsize < 100 ? 100 : newsize;
