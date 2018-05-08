@@ -67,13 +67,8 @@ function onMessageArrived(message) {
   newsize = newsize > max_value ? max_value : newsize;
   // Get the images and render
   var emil = document.getElementById("emil");
-  if (emil != null){
-    displayMagnitude(newsize, emil);
-  }
+  if (emil != null){displayMagnitude(newsize*2.5, emil);}
   var myimg = document.getElementById("mag_circle_1");
-  if (myimg != null){
-    console.log("myimg was found!");
-    displayMagnitude(newsize, myimg);
-  }
+  if (myimg != null){ displayMagnitude(newsize, myimg);}
   document.getElementById("sensorvalue").innerHTML = message.payloadString;
 }
