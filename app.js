@@ -15,8 +15,7 @@ function displayMagnitude(size, elem) {
   // elem.style.width = size + "px";
 }
 
-myimg = document.getElementById("mag_circle_1");
-console.log(myimg);
+
 
 // size = 400;
 // displayMagnitude(size, myimg);
@@ -56,7 +55,6 @@ function onConnectionLost(responseObject) {
 // called when a message arrives
 function onMessageArrived(message) {
   console.log("onMessageArrived:"+message.payloadString);
-  document.getElementById("sensorvalue").innerHTML = message.payloadString;
   var parsed = JSON.parse(message.payloadString)
   console.log("obj is " + parsed);
   var mag = Math.abs(parseInt(parsed.x)) +
@@ -67,6 +65,15 @@ function onMessageArrived(message) {
   var newsize = (mag / 25000) * modifier;
   var max_value = 600;
   newsize = newsize > max_value ? max_value : newsize;
-  myimg = document.getElementById("mag_circle_1");
-  displayMagnitude(newsize, myimg)
+  // Get the images and render
+  var emil = document.getElementById("emil");
+  if (emil != null){
+    displayMagnitude(newsize, emil);
+  }
+  var myimg = document.getElementById("mag_circle_1");
+  if (myimg != null){
+    console.log("myimg was found!");
+    displayMagnitude(newsize, myimg);
+  }
+  document.getElementById("sensorvalue").innerHTML = message.payloadString;
 }
